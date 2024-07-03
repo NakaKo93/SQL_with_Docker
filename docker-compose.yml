@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  db:
+    image: mysql:latest
+    container_name: study-DB
+    build:
+      context: .
+      dockerfile: docker/mySQL/Dockerfile
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: product_management
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user-pass
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+    - ./db/init:/docker-entrypoint-initdb.d
+    - ./db/data:/var/lib/mysql
+
+    ports:
+    - 3306:3306
