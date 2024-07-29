@@ -1,4 +1,4 @@
-FROM mysql:8.0.36-debian
+FROM mysql:8.0.30-debian
 
 # 日本語化
 RUN apt-get update && \
@@ -8,7 +8,6 @@ RUN apt-get update && \
     update-locale LANG=ja_JP.UTF-8 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-
 ENV LC_ALL ja_JP.UTF-8
 COPY docker/mySQL/my.cnf /etc/mysql/conf.d/my.cnf
 
